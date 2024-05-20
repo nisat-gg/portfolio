@@ -1,19 +1,32 @@
 # How to deploy the project (on GitHub pages)
 
-There are 2 methods.
+## Method : 
 
-## Method 1: Using Github Actions
+1. Open github and create a repo. (No need to add readme or license at this moment)
 
-1. Update `vite.config.js` base property to match the name of the repository. For example, `base: "/2d-portfolio-kaboom"`
+2. Run the commands that are showing on the screen to your git command line.
+     - `git init`
+     - `git add .`
+     - `git commit -m "first commit"`
+     - `git remote add origin https://github.com//example.git`
+     - `git push -u origin main`
+  
+   Now we should be able to see our code in the github repository.
 
-2. Navigate to the repository settings on GitHub and configure GitHub pages to use GitHub Actions by creating a custom workflow. Read [this](https://vitejs.dev/guide/static-deploy#github-pages) for more info.
+## Start Deplyoing
 
-3. After setting up the custom workflow, go to the Actions tab within the repository. From there, select the workflow you created in step 2 and trigger the deployment process.
+This is how your website will look: (your_github_name.github.io/repo_name)
 
-4. The portfolio should now be live and accessible through GitHub pages.
+1. We have to change our Vite config! : Update `vite.config.js` base property to match the name of the repository. For example, `base: "/your_portfolio"`
 
-## Method 2: Using Another Repository
+2. Open your git terminal:
+   - `npm run build`
+   - `git add dist -f` (We need -f because, Vite's default .gitignore, ignores /dist, but we need this 
+      folder, so we need to to overwrite that)
+   - `git commit -m "adding dist"`
+   - `git subtree push --prefix dist origin gh-pages` (This creates gh-pages a subtree of our master branch)
 
-1. Run `npm run build`.
-2. Take the resulting content of the `dist` folder and put it in a new GitHub repository.
-3. Activate GitHub pages in your new repository's settings.
+Now we can see gh-pages branch in your github repository.
+
+3. Go to setting of that repo > go to pages > you can see the URL there.
+
